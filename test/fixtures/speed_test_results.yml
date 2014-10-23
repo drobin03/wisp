@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  city_id: 
+  isp_company_id: 
+  date: 2014-10-23 09:49:08
+  download_kbps: 1.5
+  upload_kbps: 1.5
+  total_tests: 
+  distance_miles: 1.5
+
+two:
+  city_id: 
+  isp_company_id: 
+  date: 2014-10-23 09:49:08
+  download_kbps: 1.5
+  upload_kbps: 1.5
+  total_tests: 
+  distance_miles: 1.5
