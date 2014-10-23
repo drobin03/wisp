@@ -1,0 +1,8 @@
+<%- @countries.each do |country| -%>
+  <h2><%= country.name %></h2>
+  <ul>
+  <%- country.provinces.each do |province| -%>
+    <li><%= province.name %></li>
+  <% end %>
+  </ul>
+<% end %>
