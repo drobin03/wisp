@@ -85,3 +85,20 @@ Started GET "/" for 127.0.0.1 at 2014-10-23 09:02:04 -0400
 Processing by Rails::WelcomeController#index as HTML
   Rendered /Users/danielrobinson/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/railties-4.1.4/lib/rails/templates/rails/welcome/index.html.erb (2.0ms)
 Completed 200 OK in 17ms (Views: 9.1ms | ActiveRecord: 0.0ms)
+  [1m[36mCountry Load (0.1ms)[0m  [1mSELECT  "countries".* FROM "countries"  WHERE "countries"."name" = 'Canada' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "provinces" ("country_id", "created_at", "latitude", "longitude", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["country_id", 1], ["created_at", "2014-10-23 13:30:24.533769"], ["latitude", 85.0], ["longitude", 50.0], ["name", "Ontario"], ["updated_at", "2014-10-23 13:30:24.533769"]]
+  [1m[35m (8.5ms)[0m  commit transaction
+  [1m[36mProvince Load (0.2ms)[0m  [1mSELECT  "provinces".* FROM "provinces"  WHERE "provinces"."name" = 'Ontario' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "cities" ("created_at", "latitude", "longitude", "name", "province_id", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-10-23 13:31:23.201160"], ["latitude", 80.25], ["longitude", 43.55], ["name", "Guelph"], ["province_id", 1], ["updated_at", "2014-10-23 13:31:23.201160"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "cities" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-10-23 13:35:44.203212"], ["name", "Kitchener"], ["updated_at", "2014-10-23 13:35:44.203212"]]
+  [1m[36m (5.1ms)[0m  [1mcommit transaction[0m
+  [1m[36mCity Load (0.2ms)[0m  [1mSELECT  "cities".* FROM "cities"  WHERE "cities"."name" = 'Kitchener' LIMIT 1[0m
+  [1m[35mProvince Load (0.2ms)[0m  SELECT  "provinces".* FROM "provinces"  WHERE "provinces"."id" = ? LIMIT 1  [["id", 0]]
+  [1m[36mProvince Load (0.1ms)[0m  [1mSELECT  "provinces".* FROM "provinces"  WHERE "provinces"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE "cities" SET "latitude" = ?, "longitude" = ?, "province_id" = ?, "updated_at" = ? WHERE "cities"."id" = 2[0m  [["latitude", 80.4833], ["longitude", 43.45], ["province_id", 1], ["updated_at", "2014-10-23 13:38:26.737655"]]
+  [1m[35m (4.9ms)[0m  commit transaction
