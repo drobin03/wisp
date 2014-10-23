@@ -1,8 +1,14 @@
-<%- @countries.each do |country| -%>
-  <h2><%= country.name %></h2>
-  <ul>
-  <%- country.provinces.each do |province| -%>
-    <li><%= province.name %></li>
-  <% end %>
-  </ul>
-<% end %>
+<div class="container">
+  <div class="row">
+    <h1 class="page-header">Wisp is bootstrapped...</h1>
+
+    <%- @countries.each do |country| -%>
+      <h2><%= country.name %></h2>
+      <ul>
+      <%- country.provinces.each do |province| -%>
+        <li><%= province.name %></li>
+      <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>  
