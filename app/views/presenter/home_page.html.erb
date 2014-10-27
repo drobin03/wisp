@@ -8,6 +8,13 @@
       <ul>
       <%- country.provinces.each do |province| -%>
         <li><%= province.name %></li>
+        <ul>
+        <%- province.cities.each do |city| -%>
+          <li>
+            <b><%= city.name %></b> - speed test results: <%= city.speed_test_results.size %>
+          </li>
+        <%- end -%>
+        </ul>
       <% end %>
       </ul>
     <% end %>
