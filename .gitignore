@@ -1,5 +1,4 @@
 .ruby-version
 tmp/
-Gemfile.lock
 log/
 .DS_STORE
