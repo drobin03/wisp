@@ -1,6 +1,7 @@
 class Isp < ActiveRecord::Base
   belongs_to :city
-  has_one :isp_company
+  belongs_to :isp_company
 
-  validates :city, :isp_company, :download_kbps, :upload_kbps, presence: true
+  validates :city, :isp_company, presence: true
+  validates :isp_company, uniqueness: {scope: :city}
 end
