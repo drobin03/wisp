@@ -17,6 +17,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'bootstrap-sass'
 gem 'smarter_csv'
+gem 'byebug'
 gem 'mechanize'
 gem 'activerecord-import'
 
