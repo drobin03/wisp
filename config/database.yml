@@ -6,7 +6,9 @@
 #
 default: &default
   adapter: mysql2
-  username: root
+  host: iamdan.me
+  username: rails_user
+  password: 3dWvgFrA
   pool: 5
   timeout: 5000
 
