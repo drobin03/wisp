@@ -12,6 +12,9 @@
         <%- province.cities.each do |city| -%>
           <li>
             <b><%= city.name %></b> - speed test results: <%= city.speed_test_results.size %>
+            <%- if city.name.eql? "Guelph" -%>
+              <%= city.isp_ranking_list %>
+            <% end %>
           </li>
         <%- end -%>
         </ul>
