@@ -4,4 +4,8 @@ class Isp < ActiveRecord::Base
 
   validates :city, :isp_company, presence: true
   validates :isp_company, uniqueness: {scope: :city}
+
+  def speed_test_results
+    SpeedTestResult.where(city: self.city, isp_company: self.isp_company)
+  end
 end
