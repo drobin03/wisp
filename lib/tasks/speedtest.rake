@@ -46,7 +46,7 @@ namespace :speedtest do
     start_time = Time.now
     canadian_file = "#{Rails.root}/tmp/speedtest_data/canada.csv"
 
-    n = SmarterCSV.process(canadian_file, {:chunk_size => 100000, :file_encoding => 'ISO-8859-15', 
+    n = SmarterCSV.process(canadian_file, {:chunk_size => 100000, :file_encoding => 'utf-8', 
         :key_mapping => { 
           :country => :country,
           :region => :province,
@@ -62,17 +62,19 @@ namespace :speedtest do
         results_to_store = Array.new
         # Just Canada for now
         chunk.each do |row|
+          province_name = I18n.transliterate row[:province]
+          city_name = I18n.transliterate row[:city]
           if row[:country].downcase.eql? "canada"
             # Create Provinces
-            if !provinces.map(&:name).include? row[:province]
-              new_province = Province.create(country: canada, name: row[:province])
+            if !provinces.map(&:name).include? province_name
+              new_province = Province.create(country: canada, name: province_name)
               provinces.push(new_province)
             end
 
             # Create Cities
-            if !cities.map(&:name).include? row[:city]
-              puts "Creating a new city #{row[:city]}"
-              new_city = City.create(province: Province.find_by(name: row[:province]), name: row[:city]) 
+            if !cities.map(&:name).include? city_name
+              puts "Creating a new city #{city_name}"
+              new_city = City.create(province: Province.find_by(name: province_name), name: city_name) 
               cities.push(new_city)
             end
 
@@ -81,7 +83,7 @@ namespace :speedtest do
               new_isp = IspCompany.create(name: row[:isp_name]) 
               isps.push(new_isp)
             end
-            city = cities.select {|city| city[:name].eql?("#{row[:city]}")}.first
+            city = cities.select {|city| city[:name].eql?("#{city_name}")}.first
             isp_company = isps.select {|isp| isp[:name].eql?("#{row[:isp_name]}")}.first
             results_to_store.push (SpeedTestResult.new({ city: city, isp_company: isp_company, date: row[:date],  download_kbps: row[:download_kbps], upload_kbps: row[:upload_kbps], total_tests: row[:total_tests], distance_miles: row[:distance_miles] }))
           end

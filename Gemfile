@@ -20,6 +20,7 @@ gem 'smarter_csv'
 gem 'byebug'
 gem 'mechanize'
 gem 'activerecord-import'
+gem 'i18n'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
