@@ -6,9 +6,9 @@
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	  <ul class="nav navbar-nav">
-		<li class="<%= current_page?(root_path) ? 'active' : '' %>"><%= link_to "Recommend an ISP", root_path %></li>
-		<li><%= link_to("Rankings", rankings_path) %></li>
-		<li><%= link_to "Conversations", conversations_path %></li>
+		<li <%= active_path(root_path) %> ><%= link_to "Recommend an ISP", root_path %></li>
+		<li <%= active_path(rankings_path) %> ><%= link_to("Rankings", rankings_path) %></li>
+		<li <%= active_path(conversations_path) %> ><%= link_to "Conversations", conversations_path %></li>
 	  </ul>
 	</div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
