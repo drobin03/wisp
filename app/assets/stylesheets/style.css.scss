@@ -1,9 +1,13 @@
+$background: #202020;
+$textcolor: #E0E0E0;
 $orange: #FF6600;
+$grey: #404040;
+
 h1 { color: $orange; }
 
-body { color: #F0F0F0;
-background-color: #101010; }
+body { color: $textcolor;
+background-color: $background; }
 
-.navbar { background-color: #404040; }
+.navbar { background-color: $grey; }
 
-.well { background-color: #404040; }
+.well { background-color: $grey; }
