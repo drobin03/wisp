@@ -2,6 +2,7 @@ class Isp < ActiveRecord::Base
   belongs_to :city
   belongs_to :isp_company
 
+  has_many :conversations, dependent: :destroy
   validates :city, :isp_company, presence: true
   validates :isp_company, uniqueness: {scope: :city}
 
