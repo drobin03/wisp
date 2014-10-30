@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'conversations/create'
+
+  get 'conversations/show'
+
   root 'presenter#home_page'
 
   get 'rankings' => 'presenter#rankings_page'
