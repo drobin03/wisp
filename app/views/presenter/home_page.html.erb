@@ -1,7 +1,26 @@
+
 <div class="container">
   <div class="row">
     <p class="well">You can edit this page in app/views/presenter/home_page.html.erb</p>
 
+	<form class="form-inline" role="form">
+        <div class="row">
+            <div class="col-xs-6">
+                <label>Please enter your location: </label>
+                <div class="input-group">
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Province <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">wasd</a></li>
+                            <li><a href="#">wasadwadsawd action</a></li>
+                        </ul>
+                    </div>
+                    <input type="text" class="form-control" placeholder="City">
+                </div>
+            </div>
+        </div>
+    </form>
+	
 
     <%- @countries.each do |country| -%>
       <h2><%= country.name %></h2>
