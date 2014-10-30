@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_name: MyString
+  isp_related: 
+  city_related: 
+  feedback: MyText
+
+two:
+  user_name: MyString
+  isp_related: 
+  city_related: 
+  feedback: MyText
