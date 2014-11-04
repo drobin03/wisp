@@ -17,7 +17,7 @@ class RankingController < ApplicationController
     name = params["country"].nil? ? "Canada" : params["country"]
     country = Country.find_by(name: name.downcase)
 
-    @isp_list = country.provinces.cities.isps
+    @isp_list = country.isp_companies
     @ranking_list_name = "Country Ranking"
   end
 
