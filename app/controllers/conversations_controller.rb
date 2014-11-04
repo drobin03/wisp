@@ -5,6 +5,10 @@ class ConversationsController < ApplicationController
     @conversations = Conversation.all
   end
 
+  def show
+    @conversation = Conversation.find(params[:id])
+  end
+
   def new
     @conversation = Conversation.new
   end
@@ -15,16 +19,12 @@ class ConversationsController < ApplicationController
       redirect_to :action => 'show'
     else
       render :action => 'new'
+    end
   end
-  
-  def show
-    @conversation = Conversation.find(params[:id])
-  end
-  
+
   private
     def conversation_params
       params.require(:conversation).permit(
         :user_name, :feedback, :isp )
     end
-  end
 end

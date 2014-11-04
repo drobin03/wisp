@@ -1,0 +1,5 @@
+<%= form_for @conversation do |f| %>
+  <%= f.label :user_name %>
+  <%= f.text_field :user_name %>
+  <%= f.submit "Create", class: "btn btn-large btn-success" %>
+<% end %>
