@@ -1,16 +1,5 @@
 <h1 class="text-center">Conversations</h1>
 
-<script>
-$(function(){
-  
-  $(".dropdown-menu li a").click(function(){
-    
-    $(".btn:first-child").text($(this).text());
-     $(".btn:first-child").val($(this).text());
-  });
-
-</script>
-
 <div class="btn-group" style="padding-left: 50px; padding-right: 50px;">
   <div class="btn-group">
     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -18,8 +7,19 @@ $(function(){
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" role="menu">
+      <li><a href="#">Alberta</a></li>
+      <li><a href="#">British Columbia</a></li>
+      <li><a href="#">Manitoba</a></li>
+      <li><a href="#">New Brunswick</a></li>
+      <li><a href="#">Newfoundland and Labrador</a></li>
+      <li><a href="#">North-West Territories</a></li>
+      <li><a href="#">Nova Scotia</a></li>
+      <li><a href="#">Nunavut</a></li>
       <li><a href="#">Ontario</a></li>
-      <li><a href="#">ETC</a></li>
+      <li><a href="#">Prince Edward Island</a></li>
+      <li><a href="#">Saskatchewan</a></li>
+      <li><a href="#">Quebec</a></li>
+      <li><a href="#">Yukon</a></li>
     </ul>
   </div>
   <div class="btn-group">
@@ -28,6 +28,7 @@ $(function(){
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" role="menu">
+      <!-- After province is selected, fill in these selections -->
       <li><a href="#">Guelph</a></li>
       <li><a href="#">ETC</a></li>
     </ul>
@@ -38,6 +39,7 @@ $(function(){
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" role="menu">
+      <!-- Display all ISPs, or if city and/or province is selected, fill in these selections -->
       <li><a href="#">Rogers</a></li>
       <li><a href="#">ETC</a></li>
     </ul>
@@ -46,32 +48,6 @@ $(function(){
   <button type="button" class="btn btn-default">Search</button>
 
 </div>
-
-<!-- <div class="row" style="padding: 0px 600px 0px 20px;">
-
-  <div class="col-lg-6">
-
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="City">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Search</button>
-      </span>
-    </div>
-
-  </div>
-  <div class="col-lg-6">
- 
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="ISP">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Search</button>
-      </span>
-    </div>
-
-  </div>
-
-</div> -->
-
 
 <div class="panel" style="margin: 20px;">
 City / ISP
