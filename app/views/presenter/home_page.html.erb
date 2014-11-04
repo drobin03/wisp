@@ -10,7 +10,7 @@
                 <div class="input-group">
                     <div class="input-group-btn">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Province <span class="caret"></span></button>
-                        <%= select_tag "City", options_from_collection_for_select(City.all, "id", "name") %>
+                        <%= select_tag "City", options_from_collection_for_select(City.all, "id", "name"), class: "form-control" %>
                         <ul class="dropdown-menu">
                             <li><a href="#">wasd</a></li>
                             <li><a href="#">wasadwadsawd action</a></li>
