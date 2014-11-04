@@ -10,6 +10,7 @@ class RankingController < ApplicationController
     # return_val[:message] = "your list!"
     # render json: return_val
     @isp_list = city.isps
+    @ranking_list_name = "City Ranking"
   end
 
 end
