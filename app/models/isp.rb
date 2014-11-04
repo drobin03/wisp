@@ -9,4 +9,12 @@ class Isp < ActiveRecord::Base
   def speed_test_results
     SpeedTestResult.where(city: self.city, isp_company: self.isp_company)
   end
+
+  def max_download_kbps
+    speed_test_results.maximum(:download_kbps)
+  end
+
+  def avg_download_kbps
+    speed_test_results.average(:download_kbps)
+  end
 end

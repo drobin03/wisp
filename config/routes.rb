@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'rankings/city/list' => 'ranking#city_ranked_isp_list'
   get 'rankings/country/list' => 'ranking#country_ranked_isp_list'
   
+  post 'recommendation/recommend' => 'recommendations#recommend'
+
   resources :conversations
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

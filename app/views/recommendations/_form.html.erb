@@ -1,0 +1,30 @@
+<%= form_for :recommendation, url: recommendation_recommend_path, class: "form-inline", remote: true do |f| %>
+  <%= f.hidden_field :city_id, { :value => city.id } %>
+  <div class="well" style="min-height:100px;">
+    <div class="row">
+        <div class="form-group col-md-6">
+          <%= f.label :distance, "Distance from your location (KM)" %>
+          <%= f.text_field :distance, placeholder: "Distance (KM)", class: "form-control" %>
+        </div>
+        
+        <div class="form-group col-md-4">
+          <%= f.label :cost, "Cost per month" %>
+          <%= f.text_field :cost, placeholder: "$50", class: "form-control" %>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="form-group col-md-6">
+          <%= f.label :download_kbps, "Download speed (mbps)" %>
+          <%= f.text_field :download_kbps, placeholder: "20", class: "form-control" %>
+        </div>
+        
+        <div class="form-group col-md-4">
+          <%= f.label :upload_kbps, "Upload speed (mbps)" %>
+          <%= f.text_field :upload_kbps, placeholder: "5", class: "form-control" %>
+        </div>
+    </div>
+  </div>
+  
+  <%= f.submit "Recommend me an ISP", class: "btn btn-primary center-block" %>
+<% end %>

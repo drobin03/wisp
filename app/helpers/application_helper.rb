@@ -6,4 +6,9 @@ module ApplicationHelper
             return ""
         end
     end
+
+    # converts kbps to mbps
+    def to_mbps(kbps)
+      kbps / 1000
+    end
 end

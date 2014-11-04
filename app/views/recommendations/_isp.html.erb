@@ -1,0 +1,20 @@
+<table class="table">
+  <tbody>
+    <tr>
+      <td>ISP</td>
+      <td><%= @isp.isp_company.name %></td>
+    </tr>
+    <tr>
+      <td>Price</td>
+      <td><%= number_to_currency @isp.cable_price %></td>
+    </tr>
+    <tr>
+      <td>Maximum Download Speed Measured (Mbps)</td>
+      <td><%= number_to_human(to_mbps(@isp.max_download_kbps)) %></td>
+    </tr>
+    <tr>
+      <td>Average Download Speed Measured (Mbps)</td>
+      <td><%= number_to_human(to_mbps(@isp.avg_download_kbps)) %></td>
+    </tr>
+  </tbody>
+</table>
