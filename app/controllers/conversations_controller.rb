@@ -1,5 +1,10 @@
 class ConversationsController < ApplicationController
   respond_to :html, :js
+  
+  def index
+    @conversations = Conversation.all
+  end
+
   def new
     @conversation = Conversation.new
   end
@@ -11,10 +16,6 @@ class ConversationsController < ApplicationController
     else
       render :action => 'new'
   end
-
-  def index
-    @conversations = Conversation.all
-  end
   
   def show
     @conversation = Conversation.find(params[:id])
@@ -25,4 +26,5 @@ class ConversationsController < ApplicationController
       params.require(:conversation).permit(
         :user_name, :feedback, :isp )
     end
+  end
 end

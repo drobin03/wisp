@@ -6,15 +6,11 @@ Rails.application.routes.draw do
   root 'presenter#home_page'
 
   get 'rankings' => 'presenter#rankings_page'
-  get 'conversations' => 'presenter#conversations_page'
+  get 'conversations/dashboard' => 'presenter#conversations_page'
 
   get 'rankings/city/list' => 'ranking#city_ranked_isp_list'
   
-  resources :conversations do
-    member do
-      get 'show'
-    end
-  end
+  resources :conversations
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
