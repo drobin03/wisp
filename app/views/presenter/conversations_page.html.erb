@@ -1,1 +1,99 @@
-<h1>Conversations</h1>
+<h1 class="text-center">Conversations</h1>
+
+<script>
+$(function(){
+  
+  $(".dropdown-menu li a").click(function(){
+    
+    $(".btn:first-child").text($(this).text());
+     $(".btn:first-child").val($(this).text());
+  });
+
+</script>
+
+<div class="btn-group" style="padding-left: 50px; padding-right: 50px;">
+  <div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+      Province
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+      <li><a href="#">Ontario</a></li>
+      <li><a href="#">ETC</a></li>
+    </ul>
+  </div>
+  <div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+      City
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+      <li><a href="#">Guelph</a></li>
+      <li><a href="#">ETC</a></li>
+    </ul>
+  </div>
+  <div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+      ISP
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+      <li><a href="#">Rogers</a></li>
+      <li><a href="#">ETC</a></li>
+    </ul>
+  </div>
+
+  <button type="button" class="btn btn-default">Search</button>
+
+</div>
+
+<!-- <div class="row" style="padding: 0px 600px 0px 20px;">
+
+  <div class="col-lg-6">
+
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="City">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Search</button>
+      </span>
+    </div>
+
+  </div>
+  <div class="col-lg-6">
+ 
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="ISP">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Search</button>
+      </span>
+    </div>
+
+  </div>
+
+</div> -->
+
+
+<div class="panel" style="margin: 20px;">
+City / ISP
+  <div class="panel-body" style="padding: 30px">
+    
+    <div class="panel">
+      <div class="row">
+        <div class="col-lg-2">
+          Testing
+        </div>
+        <div class="col-lg-2">
+          Testing
+        </div>
+        <div class="col-lg-2">
+          Testing
+        </div>
+      </div>
+      <div class="panel-body">
+        Text zone or something
+      </div>
+    </div>
+
+  </div>
+</div>
+
