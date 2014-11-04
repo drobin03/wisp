@@ -3,7 +3,7 @@ class City < ActiveRecord::Base
   has_many :isps, dependent: :destroy
   has_many :speed_test_results, dependent: :destroy
   has_many :isp_companies, through: :isps
-  has_many :conversations, dependent: :destroy
+  has_many :conversations, through: :isps, dependent: :destroy
 
   validates :province, :name, presence: true
 
