@@ -49,22 +49,5 @@
     </form>
     <div id="isp_list">
     </div>	
-	
-
-    <%- @countries.each do |country| -%>
-      <h2><%= country.name %></h2>
-      <ul>
-      <%- country.provinces.each do |province| -%>
-        <li><%= province.name %></li>
-        <ul>
-        <%- province.cities.each do |city| -%>
-          <li>
-            <b><%= city.name %></b> - speed test results:
-          </li>
-        <%- end -%>
-        </ul>
-      <% end %>
-      </ul>
-    <% end %>
   </div>
 </div>  
