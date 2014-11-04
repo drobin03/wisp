@@ -9,7 +9,7 @@ class RankingController < ApplicationController
     # return_val[:isps] = city.isps.to_json
     # return_val[:message] = "your list!"
     # render json: return_val
-    @isp_list = city.isps
+    @isp_list = city.isp_companies
     @ranking_list_name = "City Ranking"
   end
   
@@ -17,7 +17,7 @@ class RankingController < ApplicationController
     name = params["country"].nil? ? "Canada" : params["country"]
     country = Country.find_by(name: name.downcase)
 
-    @isp_list = country.provinces.cities.isps
+    @isp_list = country.isp_companies
     @ranking_list_name = "Country Ranking"
   end
 
