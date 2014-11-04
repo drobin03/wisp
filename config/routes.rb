@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'conversations/dashboard' => 'presenter#conversations_page'
 
   get 'rankings/city/list' => 'ranking#city_ranked_isp_list'
+  get 'rankings/country/list' => 'ranking#country_ranked_isp_list'
   
   resources :conversations
   # The priority is based upon order of creation: first created -> highest priority.

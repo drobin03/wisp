@@ -9,21 +9,47 @@
                 <label>Please enter your location: </label>
                 <div class="input-group">
                     <div class="input-group-btn">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Province <span class="caret"></span></button>
+                        <%= select_tag "Province", options_from_collection_for_select(Province.all, "id", "name"), class: "form-control" %>
                         <%= select_tag "City", options_from_collection_for_select(City.all, "id", "name"), class: "form-control" %>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">wasd</a></li>
-                            <li><a href="#">wasadwadsawd action</a></li>
-                            
-                        </ul>
                     </div>
-                    <input type="text" class="form-control" placeholder="City">
                 </div>
             </div>
         </div>
     </form>
+
+    <h4>Select ISP searching criteria (optional)</h4>
+    <form class="form-inline" role="form">
+    <div class="well" style="min-height:100px;">
+      <div class="row">
+          <div class="form-group col-md-6">
+            <label for="distance">Distance from your location (KM)</label>
+            <input type="text" class="form-control" id="distance" placeholder="Distance (KM)">
+          </div>
+          
+          <div class="form-group col-md-4">
+            <label for="cost">Cost per month</label>
+            <input type="text" class="form-control" id="cost" placeholder="$50">
+          </div>
+      </div>
+      
+      <div class="row">
+          <div class="form-group col-md-6">
+            <label for="download">Download speed (mbps)</label>
+            <input type="text" class="form-control" id="download" placeholder="20">
+          </div>
+          
+          <div class="form-group col-md-4">
+            <label for="upload">Upload speed</label>
+            <input type="text" class="form-control" id="upload" placeholder="5">
+          </div>
+      </div>
+    </div>
+    
+    <button type="submit" class="btn btn-primary center-block">Recommend me an ISP</button>
+    </form>
     <div id="isp_list">
     </div>	
+	
 
     <%- @countries.each do |country| -%>
       <h2><%= country.name %></h2>
