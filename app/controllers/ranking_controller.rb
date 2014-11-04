@@ -5,7 +5,7 @@ class RankingController < ApplicationController
     city = City.find_by(name: name.downcase)
     
     return_val = Hash.new
-    return_val[:isps] = city.isps
+    return_val[:isps] = city.isps.to_json
     return_val[:message] = "your list!"
     render json: return_val
   end
