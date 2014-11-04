@@ -4,6 +4,7 @@ $( document ).ready(function() {
     
 });
 
+// defaults to guelph
 $.ajax({
     url: "rankings/city/list",
     }).done(function( data ) {
