@@ -1,4 +1,6 @@
 <h1>Conversations#show</h1>
 <p>Find me in app/views/conversations/show.html.erb</p>
 
-<label>User name</label> <span> <%= @conversation.user_name %></span>
+<label>Username</label> <span> <%= @conversation.user_name %></span><br/>
+<label>ISP</label> <span> <%= @conversation.isp.isp_company.name %></span><br/>
+<label>Feedback</label> <span> <%= @conversation.feedback %></span>
