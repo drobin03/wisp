@@ -3,12 +3,38 @@ $textcolor: #E0E0E0;
 $orange: #FF6600;
 $grey: #404040;
 
-h1 { color: $orange; }
+h1 
+{ 
+	color: $orange; 
+}
 
-body { color: $textcolor;
-background-color: $background; }
+body 
+{ 
+	color: $textcolor;
+	background-color: $background; 
+}
 
-.navbar { background-color: $grey; }
+.navbar 
+{ 
+	background-color: $grey; 
+}
 
-.well { background-color: $grey; }
-.panel { background-color: $grey; }
+.well 
+{ 
+	background-color: $grey; 
+}
+.panel 
+{ 
+	background-color: $grey; 
+}
+
+div.conversation
+{
+	background-color: #EEE; 
+	color: #333;
+	a
+	{
+		color: $orange;
+		text-decoration: underline;
+	}
+}

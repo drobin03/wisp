@@ -25,6 +25,6 @@ class ConversationsController < ApplicationController
   private
     def conversation_params
       params.require(:conversation).permit(
-        :user_name, :province, :city, :isp, :body)
+        :user_name, :province, :city, :isp, :subject, :body)
     end
 end
