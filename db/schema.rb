@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141106135842) do
+ActiveRecord::Schema.define(version: 20141106145631) do
 
   create_table "cities", force: true do |t|
     t.integer  "province_id"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20141106135842) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "province_id"
+    t.string   "subject"
   end
 
   add_index "conversations", ["isp_id"], name: "index_conversations_on_isp_id", using: :btree
