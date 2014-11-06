@@ -11,4 +11,7 @@ class PresenterController < ApplicationController
   	@Conversations = Conversation.all
   end
 
+  def filter_location
+      @city_options = Province.find(params[:province_id]).cities unless params[:province_id].nil?
+  end
 end
