@@ -1,6 +1,7 @@
 class ConversationsController < ApplicationController
   respond_to :html, :js
   
+  
   def index
     @conversations = Conversation.all
   end
@@ -16,7 +17,7 @@ class ConversationsController < ApplicationController
   def create
     @conversation = Conversation.new(conversation_params)
     if @conversation.save
-      redirect_to :action => 'show'
+      redirect_to :action => 'index'
     else
       render :action => 'new'
     end
@@ -25,6 +26,6 @@ class ConversationsController < ApplicationController
   private
     def conversation_params
       params.require(:conversation).permit(
-        :user_name, :province, :city, :isp, :subject, :body)
+        :user_name, :province_id, :city_id, :isp_company_id, :subject, :body)
     end
 end

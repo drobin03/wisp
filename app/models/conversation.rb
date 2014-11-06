@@ -1,15 +1,15 @@
 class Conversation < ActiveRecord::Base
-  belongs_to :isp
-
-  validates :user_name, :isp, :body, presence: true
+  belongs_to :isp_company
+  belongs_to :city
+  belongs_to :province
 
   def date
   	self.created_at.strftime("%d/%m/%Y %I:%M%p")
   end
 
   def breadcrumbs
-  	#self.province + "/" + self.city + "/" self.isp
-  	self.isp
+  	self.province.name + " / " + self.city.name + " / " + self.isp_company.name
   end
-  validates :user_name, :isp, :subject, :body, presence: true
+
+  validates :user_name, :isp_company, :subject, :body, presence: true
 end

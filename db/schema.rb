@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141106145631) do
+ActiveRecord::Schema.define(version: 20141106175302) do
 
   create_table "cities", force: true do |t|
     t.integer  "province_id"
@@ -26,16 +26,18 @@ ActiveRecord::Schema.define(version: 20141106145631) do
 
   create_table "conversations", force: true do |t|
     t.string   "user_name"
-    t.integer  "isp_id"
-    t.integer  "city_id"
+    t.text     "subject"
     t.text     "body"
+    t.integer  "isp_company_id"
+    t.integer  "city_id"
+    t.integer  "province_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "province_id"
-    t.string   "subject"
   end
 
-  add_index "conversations", ["isp_id"], name: "index_conversations_on_isp_id", using: :btree
+  add_index "conversations", ["city_id"], name: "index_conversations_on_city_id", using: :btree
+  add_index "conversations", ["isp_company_id"], name: "index_conversations_on_isp_company_id", using: :btree
+  add_index "conversations", ["province_id"], name: "index_conversations_on_province_id", using: :btree
 
   create_table "countries", force: true do |t|
     t.string   "name"
