@@ -14,7 +14,7 @@ $.ajax({
   });
   
 
-// defaults to guelph
+// defaults to Canada
 $.ajax({
     url: "rankings/country/list",
     }).done(function( data ) {

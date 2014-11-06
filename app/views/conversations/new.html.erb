@@ -1,7 +1,7 @@
 <%= form_for @conversation do |f| %>
   <%= f.label :user_name %>
   <%= f.text_field :user_name %><br/><br/>
-  <%= f.label :feedback %>
-  <%= f.text_field :feedback %><br/><br/>
+  <%= f.label :body %>
+  <%= f.text_field :body %><br/><br/>
   <%= f.submit "Create", class: "btn btn-large btn-success" %>
 <% end %>
