@@ -1,8 +1,24 @@
 
 
 $( document ).ready(function() {
-    getCityLocation(function(city) {
-        alert(city);
+    getCityFromBrowserGeoLocation(function(city) {
+        getLatitudeLongitude( function(latitude, longitude) {
+            var loc = {lat: latitude, lng: longitude};
+            map.panTo(loc);
+            var marker = new google.maps.Marker({
+                position: loc,
+                map: map,
+                title:"Hello World!"
+            });
+            
+            var contentString = '<div id="content"><h1>Ranked: 12</h1></div>';
+            var infowindow = new google.maps.InfoWindow({
+                  content: contentString
+            });
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map,marker);
+            });
+        });
     });
 });
 
@@ -25,9 +41,8 @@ $.ajax({
         alert( "error " + msg);
   });
   
-// calls cityCallback() with the city as the parameter if it was found, otherwise an empty string is passed
-function getCityLocation(cityCallback) {
-  if (navigator.geolocation) {
+function getLatitudeLongitude(locationCallback) {
+    if (navigator.geolocation) {
       var startPos;
       var geoOptions = {
          timeout: 10 * 1000
@@ -39,7 +54,34 @@ function getCityLocation(cityCallback) {
         var longitude = startPos.coords.longitude;
         console.log(latitude);
         console.log(longitude);
-        
+        locationCallback(latitude, longitude);
+      };
+      var geoError = function(error) {
+          console.log('Error occurred. Error code: ' + error.code);
+          return "";
+      };
+
+      navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
+    }
+}
+
+function getLocationFromCity(cityName, callback) {
+    var geocoder =  new google.maps.Geocoder();
+    geocoder.geocode( { 'address': cityName + ', canada'}, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            var latitude = results[0].geometry.location.lat();
+            var longitude = results[0].geometry.location.lng();
+            callback(latitude, longitude);
+          } else {
+            return "";
+          }
+        });
+}
+  
+// calls cityCallback() with the city as the parameter if it was found, otherwise an empty string is passed
+function getCityFromBrowserGeoLocation(cityCallback) {
+
+    getLatitudeLongitude( function(latitude, longitude) {
         var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+latitude+','+longitude+'&sensor=false&key=AIzaSyBxKrzd5Mmk4Bbjbbg0xnfESgso--qJ6kk'
 
         $.ajax({
@@ -72,14 +114,5 @@ function getCityLocation(cityCallback) {
             console.log("Request Failed: " + err );
             cityCallback("");
         });  
-        
-        
-      };
-      var geoError = function(error) {
-        console.log('Error occurred. Error code: ' + error.code);
-        cityCallback("");
-      };
-
-      navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
-  }
+    });
 }
