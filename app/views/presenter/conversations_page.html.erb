@@ -18,10 +18,28 @@
 </form>
 
 <div class="panel" style="margin: 20px;">
-City / ISP
+  All Conversations
   <div class="panel-body" style="padding: 30px">
     
-    <div class="panel" style="background-color: #EEE; color: #333;">
+    <% @Conversations.each do |conversation| %>
+
+      <div class="panel conversation">
+        <%= conversation.breadcrumbs %>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-8">
+              <%= link_to "This is the subject", conversation %> <!--<%= conversation.subject %>-->
+            </div>
+            <div class="col-xs-4">
+              <p style="text-align: right;">User: <%= conversation.user_name %> &nbsp&nbsp&nbsp&nbsp Submitted: <%= conversation.date %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+
+    <!--<div class="panel conversation">
       Ontario/Guelph/TekSavvy
       <div class="panel-body">
         <div class="row">
@@ -35,7 +53,7 @@ City / ISP
       </div>
     </div>
 
-    <div class="panel" style="background-color: #EEE; color: #333;">
+    <div class="panel conversation">
       Ontario/Guelph/TekSavvy
       <div class="panel-body">
         <div class="row">
@@ -49,6 +67,19 @@ City / ISP
       </div>
     </div>
 
+    <div class="panel conversation">
+      Ontario/Guelph/Start
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-8">
+            <p><a href="http://media.giphy.com/media/vcSRCyUaMktXy/giphy.gif">OMG START IS THE BEST ZOMGZOR LOLOLOL!1!!!</a></p>
+          </div>
+          <div class="col-xs-4">
+            <p style="text-align: right;">User: SomePunkKid &nbsp&nbsp&nbsp&nbsp Submitted: 05/11/2014 1:37pm</p>
+          </div>
+        </div>
+      </div>
+    </div>-->
+
   </div>
 </div>
-
