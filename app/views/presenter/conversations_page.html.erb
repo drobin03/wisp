@@ -1,13 +1,13 @@
 <h1 class="text-center">Conversations</h1>
 
 <form class="form-inline" role="form">
-    <div class="row">
+    <div class="row" style="margin: 0px 20px 0px 20px">
         <div class="col-xs-11">
             <div class="input-group">
                 <div class="input-group-btn">
-                    <%= select_tag "Province", options_from_collection_for_select(Province.all, "id", "name"), class: "form-control" %>
-                    <%= select_tag "City", options_from_collection_for_select(City.all, "id", "name"), class: "form-control" %>
-                    <%= select_tag "ISP", options_from_collection_for_select(IspCompany.all, "id", "name"), class: "form-control" %>
+                    <%= select_tag "Province", options_from_collection_for_select(Province.all, "id", "name"), prompt:"---Province---", class: "form-control" %>
+                    <%= select_tag "City", options_from_collection_for_select(City.all, "id", "name"), prompt:"---City (Requires Province)---", class: "form-control" %>
+                    <%= select_tag "ISP", options_from_collection_for_select(IspCompany.all, "id", "name"), prompt:"---ISP---", class: "form-control" %>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
         <div class="panel-body">
           <div class="row">
             <div class="col-xs-8">
-              <%= link_to "This is the subject", conversation %> <!--<%= conversation.subject %>-->
+              <%= link_to conversation.subject, conversation %>
             </div>
             <div class="col-xs-4">
               <p style="text-align: right;">User: <%= conversation.user_name %> &nbsp&nbsp&nbsp&nbsp Submitted: <%= conversation.date %></p>
@@ -38,48 +38,6 @@
       </div>
 
     <% end %>
-
-    <!--<div class="panel conversation">
-      Ontario/Guelph/TekSavvy
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-xs-8">
-            <p><a href="http://bulbapedia.bulbagarden.net">[Q] How would you rate your satisfaction with TekSavvy?</a></p>
-          </div>
-          <div class="col-xs-4">
-            <p style="text-align: right;">User: Gary &nbsp&nbsp&nbsp&nbsp Submitted: 06/11/2014 8:56am</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="panel conversation">
-      Ontario/Guelph/TekSavvy
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-xs-8">
-            <p><a href="http://4chan.org">[NSFW] This is what I think of TekSavvy</a></p>
-          </div>
-          <div class="col-xs-4">
-            <p style="text-align: right;">User: CockGobbler &nbsp&nbsp&nbsp&nbsp Submitted: 06/11/2014 4:20am</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="panel conversation">
-      Ontario/Guelph/Start
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-xs-8">
-            <p><a href="http://media.giphy.com/media/vcSRCyUaMktXy/giphy.gif">OMG START IS THE BEST ZOMGZOR LOLOLOL!1!!!</a></p>
-          </div>
-          <div class="col-xs-4">
-            <p style="text-align: right;">User: SomePunkKid &nbsp&nbsp&nbsp&nbsp Submitted: 05/11/2014 1:37pm</p>
-          </div>
-        </div>
-      </div>
-    </div>-->
 
   </div>
 </div>

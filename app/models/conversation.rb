@@ -8,8 +8,8 @@ class Conversation < ActiveRecord::Base
   end
 
   def breadcrumbs
-  	#self.province + "/" + self.city + "/" self.isp
-  	self.isp
+  	#self.province + "/" + self.city + "/" 
+  	self.isp.isp_company.name
   end
   validates :user_name, :isp, :subject, :body, presence: true
 end

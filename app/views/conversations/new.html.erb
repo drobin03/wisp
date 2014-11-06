@@ -1,12 +1,28 @@
-<%= form_for @conversation do |f| %>
-  <%= f.label :user_name %>
-  <%= f.text_field :user_name %><br/><br/>
-  <%= select_tag "Province", options_from_collection_for_select(Province.all, "id", "name"), include_blank: true, class: "form-control" %>
-  <%= select_tag "City", options_from_collection_for_select(City.all, "id", "name"), include_blank: true, class: "form-control" %>
-  <%= select_tag "ISP", options_from_collection_for_select(IspCompany.all, "id", "name"), class: "form-control" %><br/><br/>
-  <%= f.label :subject %>
-  <%= f.text_field :subject %><br/><br/>
-  <%= f.label :body %>
-  <%= f.text_field :body %><br/><br/>
-  <%= f.submit "Create", class: "btn btn-large btn-success" %>
-<% end %>
+<div class="text-center">  
+  <h1 style="margin: 0px 0px 40px">Create a New Conversation</h1>
+
+  <%= form_for @conversation, html: {class: "form-inline"} do |f| %>
+
+    <%= f.label :user_name %>
+    <%= f.text_field :user_name %><br/><br/>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="input-group">
+          <div class="input-group-btn">
+            <%= select_tag "Province", options_from_collection_for_select(Province.all, "id", "name"), prompt: "---Province---", class: "form-control" %>
+            <%= select_tag "City", options_from_collection_for_select(City.all, "id", "name"), prompt: "---City---", class: "form-control" %>
+            <%= select_tag "ISP", options_from_collection_for_select(IspCompany.all, "id", "name"), prompt: "---ISP (Mandatory)---", class: "form-control" %>
+          </div>
+        </div>
+      </div>
+    </div><br/>
+
+    <%= f.label :subject %>
+    <%= f.text_area :subject %><br/><br/>
+    <%= f.label :body %>
+    <%= f.text_area :body %><br/><br/>
+    <%= f.submit "Create", class: "btn btn-large btn-success" %>
+
+  <% end %>
+</div>
