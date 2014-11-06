@@ -1,4 +1,5 @@
-<h4> <%= @ranking_list_name %>
+<table class="table table-bordered text-center">
+<thead><tr><th class="text-center"><%= @ranking_list_name %></th></tr></thead>
 <% @isp_list.each do |isp| %>
-  <li><%= isp.name %>
+  <tr><td><%= isp.name %></td></tr>
 <% end %>
