@@ -1,9 +1,11 @@
 <%= form_for @conversation do |f| %>
   <%= f.label :user_name %>
   <%= f.text_field :user_name %><br/><br/>
-  <%= select_tag "Province", options_from_collection_for_select(Province.all, "id", "name"), class: "form-control" %>
-  <%= select_tag "City", options_from_collection_for_select(City.all, "id", "name"), class: "form-control" %>
+  <%= select_tag "Province", options_from_collection_for_select(Province.all, "id", "name"), include_blank: true, class: "form-control" %>
+  <%= select_tag "City", options_from_collection_for_select(City.all, "id", "name"), include_blank: true, class: "form-control" %>
   <%= select_tag "ISP", options_from_collection_for_select(IspCompany.all, "id", "name"), class: "form-control" %><br/><br/>
+  <%= f.label :subject %>
+  <%= f.text_field :subject %><br/><br/>
   <%= f.label :body %>
   <%= f.text_field :body %><br/><br/>
   <%= f.submit "Create", class: "btn btn-large btn-success" %>
