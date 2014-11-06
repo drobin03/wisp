@@ -1,72 +1,51 @@
 <h1 class="text-center">Conversations</h1>
 
-<div class="btn-group" style="padding-left: 50px; padding-right: 50px;">
-  <div class="btn-group">
-    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-      Province
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" role="menu">
-      <li><a href="#">Alberta</a></li>
-      <li><a href="#">British Columbia</a></li>
-      <li><a href="#">Manitoba</a></li>
-      <li><a href="#">New Brunswick</a></li>
-      <li><a href="#">Newfoundland and Labrador</a></li>
-      <li><a href="#">North-West Territories</a></li>
-      <li><a href="#">Nova Scotia</a></li>
-      <li><a href="#">Nunavut</a></li>
-      <li><a href="#">Ontario</a></li>
-      <li><a href="#">Prince Edward Island</a></li>
-      <li><a href="#">Saskatchewan</a></li>
-      <li><a href="#">Quebec</a></li>
-      <li><a href="#">Yukon</a></li>
-    </ul>
-  </div>
-  <div class="btn-group">
-    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-      City
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" role="menu">
-      <!-- After province is selected, fill in these selections -->
-      <li><a href="#">Guelph</a></li>
-      <li><a href="#">ETC</a></li>
-    </ul>
-  </div>
-  <div class="btn-group">
-    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-      ISP
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" role="menu">
-      <!-- Display all ISPs, or if city and/or province is selected, fill in these selections -->
-      <li><a href="#">Rogers</a></li>
-      <li><a href="#">ETC</a></li>
-    </ul>
-  </div>
-
-  <button type="button" class="btn btn-default">Search</button>
-
-</div>
+<form class="form-inline" role="form">
+    <div class="row">
+        <div class="col-xs-11">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <%= select_tag "Province", options_from_collection_for_select(Province.all, "id", "name"), class: "form-control" %>
+                    <%= select_tag "City", options_from_collection_for_select(City.all, "id", "name"), class: "form-control" %>
+                    <%= select_tag "ISP", options_from_collection_for_select(IspCompany.all, "id", "name"), class: "form-control" %>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-default">Search</button>
+        </div>
+    </div>
+</form>
 
 <div class="panel" style="margin: 20px;">
 City / ISP
   <div class="panel-body" style="padding: 30px">
     
-    <div class="panel">
-      <div class="row">
-        <div class="col-lg-2">
-          Testing
-        </div>
-        <div class="col-lg-2">
-          Testing
-        </div>
-        <div class="col-lg-2">
-          Testing
+    <div class="panel" style="background-color: #EEE; color: #333;">
+      Ontario/Guelph/TekSavvy
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-8">
+            <p><a href="http://bulbapedia.bulbagarden.net">[Q] How would you rate your satisfaction with TekSavvy?</a></p>
+          </div>
+          <div class="col-xs-4">
+            <p style="text-align: right;">User: Gary &nbsp&nbsp&nbsp&nbsp Submitted: 06/11/2014 8:56am</p>
+          </div>
         </div>
       </div>
+    </div>
+
+    <div class="panel" style="background-color: #EEE; color: #333;">
+      Ontario/Guelph/TekSavvy
       <div class="panel-body">
-        Text zone or something
+        <div class="row">
+          <div class="col-xs-8">
+            <p><a href="http://4chan.org">[NSFW] This is what I think of TekSavvy</a></p>
+          </div>
+          <div class="col-xs-4">
+            <p style="text-align: right;">User: CockGobbler &nbsp&nbsp&nbsp&nbsp Submitted: 06/11/2014 4:20am</p>
+          </div>
+        </div>
       </div>
     </div>
 
