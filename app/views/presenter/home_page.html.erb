@@ -1,19 +1,7 @@
 <div class="container">
   <div class="col-md-12" style="padding-bottom:50px">
 
-	<form class="form-inline" role="form">
-        <div class="row">
-            <div class="col-xs-6">
-                <label>Please enter your location: </label>
-                <div class="input-group">
-                    <div class="input-group-btn">
-                        <%= select_tag "Province", options_from_collection_for_select(Province.all, "id", "name"), class: "form-control" %>
-                        <%= select_tag "City", options_from_collection_for_select(City.all, "id", "name"), class: "form-control" %>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
+    <%= render partial: "location_form" %>
 
     <h4>Select ISP searching criteria (optional)</h4>
     <div id="recommendation-section">

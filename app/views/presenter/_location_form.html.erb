@@ -1,0 +1,19 @@
+<%= form_tag filterLocation_path, id: "location_filter_form", class: "form-inline", remote: true do %>
+  <div class="row">
+    <div class="col-xs-6">
+      <label>Please enter your location: </label>
+      <div class="input-group">
+          <div class="input-group-btn">
+              <%= select_tag :province_id, options_from_collection_for_select(Province.all, "id", "name"), prompt: "Province", class: "form-control" %>
+              <%= select_tag :city_id, options_from_collection_for_select([], "id", "name"), prompt: "City", class: "form-control" %>
+          </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+$('#province_id').change(function(){
+  $(this).closest('form').submit();
+});
+</script>
