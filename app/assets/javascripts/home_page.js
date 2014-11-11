@@ -44,7 +44,7 @@ function addMapMarker(latitude, longitude, rank) {
         map: map
     });
     
-    var contentString = '<h4>Ranked: ' + rank + '</h4>';
+    var contentString = '<b>Ranked: ' + rank + '</b>';
     var infowindow = new google.maps.InfoWindow({
           content: contentString
     });
