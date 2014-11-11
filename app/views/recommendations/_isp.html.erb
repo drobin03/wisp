@@ -1,20 +1,21 @@
-<table class="table">
-  <tbody>
-    <tr>
-      <td>ISP</td>
-      <td><%= @isp.isp_company.name %></td>
-    </tr>
-    <tr>
-      <td>Price</td>
-      <td><%= number_to_currency @isp.cable_price %></td>
-    </tr>
-    <tr>
-      <td>Maximum Download Speed Measured (Mbps)</td>
-      <td><%= number_to_human(to_mbps(@isp.max_download_kbps)) %></td>
-    </tr>
-    <tr>
-      <td>Average Download Speed Measured (Mbps)</td>
-      <td><%= number_to_human(to_mbps(@isp.avg_download_kbps)) %></td>
-    </tr>
-  </tbody>
-</table>
+<div class="element-animation text-center">
+    <h2><%= @isp.isp_company.name %></h2>
+    <div class="col-md-4">
+        <div class="pull-left">
+        Price:
+        </div>
+        <%= number_to_currency @isp.cable_price %>
+    </div>
+    <div class="col-md-4">
+        <div class="pull-left">
+            Maximum Download Speed Measured:
+        </div>
+        <%= number_to_human(to_mbps(@isp.max_download_kbps)) %> Mbps
+    </div>
+    <div class="col-md-4">
+        <div class="pull-left">
+            Average Download Speed Measured:
+        </div>
+        <%= number_to_human(to_mbps(@isp.avg_download_kbps)) %> Mbps
+    </div>
+</div>
