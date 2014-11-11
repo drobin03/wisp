@@ -46,7 +46,7 @@ namespace :ispinfo do
           end
           # Search for the isp in our database
           if !data_tds.empty? && !data_tds[0].empty?
-            name = data_tds[0].split(" ")[0]
+            name = data_tds[0].gsub(/[\,\.]/, " ").split(" ")[0]
             isp_company = IspCompany.where(['name LIKE ?', "%#{name}%"]).first
             if isp_company.nil?
               puts "Isp not found - <#{data_tds[0]}>"
@@ -79,6 +79,36 @@ namespace :ispinfo do
         import = Isp.import isps, on_duplicate_key_update: [ :download_kbps, :upload_kbps, :cable_price ]
       end
     end
+  end
+
+  task update_other_isps: :environment do
+    companies = [IspCompany.find_by(name: "Rogers Cable"), IspCompany.find_by(name: "Bell Canada"), IspCompany.find_by(name: "Start Communications")]
+    isps = Array.new
+    companies.each do |company|
+      puts company.name
+      case company.name
+      when "Rogers Cable"
+        cable_price = 51.99
+      when "Bell Canada"
+        cable_price = 47.95
+      when "Start Communications"
+        cable_price = 35
+      end
+
+      City.all.each do |city|
+        params = { city: city, isp_company: company, cable_price: cable_price }
+        isp = city.isps.select {|city_isp| city_isp.isp_company_id.eql? company.id }.first
+        if isp
+          # ISP already exists, update it's data
+          isp.cable_price = cable_price
+          isp.save
+        else
+          isps.push(Isp.new(params))
+        end
+      end
+    end
+
+    import = Isp.import isps, on_duplicate_key_update: [ :cable_price ]
   end
 
   def parse_speeds(speed_data_text)
