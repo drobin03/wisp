@@ -11,5 +11,5 @@ class Conversation < ActiveRecord::Base
   	self.province.name + " / " + self.city.name + " / " + self.isp_company.name
   end
 
-  validates :user_name, :isp_company, :subject, :body, presence: true
+  validates :user_name, :province, :city, :isp_company, :subject, :body, presence: true
 end

@@ -1,13 +1,10 @@
 Rails.application.routes.draw do
-  get 'conversations/create'
-
-  get 'conversations/show'
 
   root 'presenter#home_page'
 
   get 'rankings' => 'presenter#rankings_page'
   get 'conversations/dashboard' => 'presenter#conversations_page'
-
+  
   get 'rankings/city/list' => 'ranking#city_ranked_isp_list'
   get 'rankings/country/list' => 'ranking#country_ranked_isp_list'
   
