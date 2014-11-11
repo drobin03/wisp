@@ -39,6 +39,14 @@ div.conversation
 	}
 }
 
+form.conversation 
+{
+	select, input, textarea
+	{
+		color: #000;
+	}
+}
+
 #map-canvas
 {
     width:550px;

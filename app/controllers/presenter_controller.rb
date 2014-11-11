@@ -8,6 +8,7 @@ class PresenterController < ApplicationController
   end
   
   def conversations_page
+    @conversation = Conversation.new
   	@Conversations = Conversation.all
   end
 
