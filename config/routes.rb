@@ -7,8 +7,11 @@ Rails.application.routes.draw do
   
   get 'rankings/city/list' => 'ranking#city_ranked_isp_list'
   get 'rankings/country/list' => 'ranking#country_ranked_isp_list'
+  get 'rankings/cities' => 'ranking#cities'
   
   post 'recommendation/recommend' => 'recommendations#recommend'
+
+  post 'city/update' => 'city#update'
 
   post '/filterLocation' => 'presenter#filter_location'
 
