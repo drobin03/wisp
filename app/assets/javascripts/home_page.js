@@ -1,23 +1,19 @@
 
 
 $( document ).ready(function() {
+    $("#city_id").change(function () {
+        var city = $("#city_id option:selected").text();
+        alert("city value changed " + city); 
+        
+        getLocationFromCity(city, function(latitude, longitude) {
+            changeMapPosition(latitude, longitude);
+        });
+    });
+
     getCityFromBrowserGeoLocation(function(city) {
         getLatitudeLongitude( function(latitude, longitude) {
-            var loc = {lat: latitude, lng: longitude};
-            map.panTo(loc);
-            var marker = new google.maps.Marker({
-                position: loc,
-                map: map,
-                title:"Hello World!"
-            });
-            
-            var contentString = '<div id="content"><h1>Ranked: 12</h1></div>';
-            var infowindow = new google.maps.InfoWindow({
-                  content: contentString
-            });
-            google.maps.event.addListener(marker, 'click', function() {
-                infowindow.open(map,marker);
-            });
+            changeMapPosition(latitude, longitude);
+            addMapMarker(latitude, longitude, 12);
         });
     });
 });
@@ -40,6 +36,27 @@ $.ajax({
     }).fail(function(jqXHR, msg) {
         alert( "error " + msg);
   });
+  
+function addMapMarker(latitude, longitude, rank) {
+    var loc = {lat: latitude, lng: longitude};
+    var marker = new google.maps.Marker({
+        position: loc,
+        map: map
+    });
+    
+    var contentString = '<h4>Ranked: ' + rank + '</h4>';
+    var infowindow = new google.maps.InfoWindow({
+          content: contentString
+    });
+    google.maps.event.addListener(marker, 'click', function() {
+        infowindow.open(map,marker);
+    });
+}
+  
+function changeMapPosition(latitude, longitude) {
+    var loc = {lat: latitude, lng: longitude};
+    map.panTo(loc);
+}
   
 function getLatitudeLongitude(locationCallback) {
     if (navigator.geolocation) {
