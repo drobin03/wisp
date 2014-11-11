@@ -1,4 +1,5 @@
 
+// used for updating city longitudes/latitudes var timeout = 3000;
 
 $( document ).ready(function() {
     var ctx = $("#myChart").get(0).getContext("2d");
@@ -68,6 +69,8 @@ $.ajax({
     }).fail(function(jqXHR, msg) {
         alert( "error " + msg);
   });
+
+// Code to populate city longitude/latitudes updateLatLong($.map($('#city_id').find("option") ,function(option) { return $(option).html(); }));
   
 function addMapMarker(latitude, longitude, rank) {
     var loc = {lat: latitude, lng: longitude};
@@ -90,6 +93,32 @@ function changeMapPosition(latitude, longitude) {
     map.panTo(loc);
 }
   
+function updateLatLong(cities) {
+    for (i in cities) {
+        getLocationFromCityWithTimeout(cities[i]);
+    }
+}
+function getLocationFromCityWithTimeout(city) {
+  setTimeout(
+    function() { 
+        getLocationFromCity(city, 
+            function(latitude, longitude) { 
+                console.log(city + " " + longitude + " " + latitude);
+                updateCity(city, latitude, longitude);
+            }); 
+    }, timeout += 3000);
+}
+function updateCity(city, latitude, longitude) {
+  $.ajax({
+    type: "post",
+    url: "city/update",
+    data: { city_name: city, latitude: latitude, longitude: longitude }
+    }).done(function( data ) {
+        console.log( "done: " + data );
+    }).fail(function(jqXHR, msg) {
+        alert( "error " + msg);
+  });
+}
 function getLatitudeLongitude(locationCallback) {
     if (navigator.geolocation) {
       var startPos;
