@@ -17,7 +17,7 @@ class ConversationsController < ApplicationController
   def create
     @conversation = Conversation.new(conversation_params)
     if @conversation.save
-      redirect_to :action => 'index'
+      redirect_to conversations_dashboard_path
     else
       render :action => 'new'
     end
