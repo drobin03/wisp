@@ -4,8 +4,8 @@
       <label>Please enter your location: </label>
       <div class="input-group">
           <div class="input-group-btn">
-              <%= select_tag :province_id, options_from_collection_for_select(Province.all, "id", "name"), prompt: "Province", class: "form-control" %>
-              <%= select_tag :city_id, options_from_collection_for_select([], "id", "name"), prompt: "City", class: "form-control" %>
+              <%= select_tag :province_id, options_from_collection_for_select(Province.all, "id", "name"), prompt: "Province", include_blank: true, class: "form-control" %>
+              <%= select_tag :city_id, options_from_collection_for_select(City.all, "id", "name"), prompt: "City", include_blank: true, class: "form-control" %>
           </div>
       </div>
     </div>
@@ -13,7 +13,7 @@
 <% end %>
 
 <script type="text/javascript">
-$('#province_id').change(function(){
+$('#province_id, #city_id').change(function(){
   $(this).closest('form').submit();
 });
 </script>
