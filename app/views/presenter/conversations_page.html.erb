@@ -26,10 +26,7 @@
   <div class="col-md-12" style="padding: 30px">
     
     <% @Conversations.each do |conversation| %>
-     <div class="panel-group">
       <%= render partial: "conversation", locals: { conversation: conversation } %>
-    </div>
     <% end %>
-
   </div>
 </div>
