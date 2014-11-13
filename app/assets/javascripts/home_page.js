@@ -56,10 +56,14 @@ $( document ).ready(function() {
         });
     });
 
-    getCityFromBrowserGeoLocation(function(city) {
-        getLatitudeLongitude( function(latitude, longitude) {
-            changeMapPosition(latitude, longitude);
-        });
+    // prompt to automatically get the location from the user
+    getCityFromBrowserGeoLocation( function(cityName) {
+        // change the dropdown to use the automatically obtained city
+        $('#city_id option').filter(function() { 
+            return ($(this).text() == cityName);
+        }).prop('selected', true);
+        // TODO: change the province dropdown as well
+        
     });
 });
 
@@ -131,7 +135,7 @@ function updateCity(city, latitude, longitude) {
         alert( "error " + msg);
   });
 }
-function getLatitudeLongitude(locationCallback) {
+function getLatitudeLongitudeFromBrowser(locationCallback) {
     if (navigator.geolocation) {
       var startPos;
       var geoOptions = {
@@ -171,7 +175,9 @@ function getLocationFromCity(cityName, callback) {
 // calls cityCallback() with the city as the parameter if it was found, otherwise an empty string is passed
 function getCityFromBrowserGeoLocation(cityCallback) {
 
-    getLatitudeLongitude( function(latitude, longitude) {
+    getLatitudeLongitudeFromBrowser( function(latitude, longitude) {
+        changeMapPosition(latitude, longitude);
+    
         var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+latitude+','+longitude+'&sensor=false&key=AIzaSyBxKrzd5Mmk4Bbjbbg0xnfESgso--qJ6kk'
 
         $.ajax({
