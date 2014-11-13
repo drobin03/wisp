@@ -33,10 +33,23 @@ $( document ).ready(function() {
         ]
     };
     var myLineChart = new Chart(ctx).Line(data, options);
+    
+    // place city ranks on the map
+    $.ajax({
+        url: "rankings/cities",
+        }).done(function( data ) {
+            var arrayLength = data.length;
+            for (var i = 0; i < arrayLength; i++) {
+                addMapMarker(data[i].latitude, data[i].longitude, data[i].id);
+            }
+        }).fail(function(jqXHR, msg) {
+            alert( "error " + msg);
+    });
+    
 
     $("#city_id").change(function () {
         var city = $("#city_id option:selected").text();
-        alert("city value changed " + city); 
+        //alert("city value changed " + city); 
         
         getLocationFromCity(city, function(latitude, longitude) {
             changeMapPosition(latitude, longitude);
@@ -51,11 +64,11 @@ $( document ).ready(function() {
     });
 });
 
-// defaults to guelph
+// get ISP data: defaults to guelph
 $.ajax({
     url: "rankings/city/list",
     }).done(function( data ) {
-        console.log( "done: " + data );
+        console.log( "city/list data: " + data );
     }).fail(function(jqXHR, msg) {
         alert( "error " + msg);
   });
@@ -65,7 +78,7 @@ $.ajax({
 $.ajax({
     url: "rankings/country/list",
     }).done(function( data ) {
-        console.log( "done: " + data );
+        console.log( "country/list data: " + data );
     }).fail(function(jqXHR, msg) {
         alert( "error " + msg);
   });
