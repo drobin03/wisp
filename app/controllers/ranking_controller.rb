@@ -22,8 +22,8 @@ class RankingController < ApplicationController
   end
 
   def cities
-    @cities = City.all.sort_by(&:rank).reverse
-    render json: @cities.to_json(only: [:name, :rank, :longitude, :latitude])
+    cities = City.all.to_json(only: [:name, :rank, :longitude, :latitude], methods: [:avg_download_kbps])
+    render json: cities
   end
 
 end
