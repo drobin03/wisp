@@ -5,23 +5,31 @@ $( document ).ready(function() {
     var ctx = $("#myChart").get(0).getContext("2d");
     var options = {
         scaleShowGridLines : true,
+  legendTemplate : '<ul>'
+                  +'<% for (var i=0; i<datasets.length; i++) { %>'
+                    +'<li style="display:inline; padding:5px;">'
+                    +'<span style=\"color:<%=datasets[i].pointColor%>;\">'
+                    +'<% if (datasets[i].label) { %><%= datasets[i].label %><% } %></span>'
+                  +'</li>'
+                +'<% } %>'
+              +'</ul>'
     };
     
     var data = {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
         datasets: [
             {
-                label: "My First dataset",
-                fillColor: "rgba(220,220,220,0.2)",
-                strokeColor: "rgba(220,220,220,1)",
-                pointColor: "rgba(220,220,220,1)",
+                label: "Rogers",
+                fillColor: "rgba(220,0,0,0.2)",
+                strokeColor: "rgba(220,0,0,1)",
+                pointColor: "rgba(220,0,0,1)",
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(220,220,220,1)",
+                pointHighlightStroke: "rgba(220,0,0,1)",
                 data: [65, 59, 80, 81, 56, 55, 40]
             },
             {
-                label: "My Second dataset",
+                label: "Bell",
                 fillColor: "rgba(151,187,205,0.2)",
                 strokeColor: "rgba(151,187,205,1)",
                 pointColor: "rgba(151,187,205,1)",
@@ -32,7 +40,10 @@ $( document ).ready(function() {
             }
         ]
     };
-    var myLineChart = new Chart(ctx).Line(data, options);
+    var lineChart = new Chart(ctx).Line(data, options);
+    
+    var legend = lineChart.generateLegend();
+    $('#chart-container').prepend(legend);
     
     // place city ranks on the map
     $.ajax({
