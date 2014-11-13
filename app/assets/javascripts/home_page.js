@@ -40,7 +40,12 @@ $( document ).ready(function() {
         }).done(function( data ) {
             var arrayLength = data.length;
             for (var i = 0; i < arrayLength; i++) {
-                addMapMarker(data[i].latitude, data[i].longitude, data[i].id);
+                var city = data[i];
+                if (city.latitude != null && city.longitude != null){
+                    addMapMarker(data[i].latitude, data[i].longitude, data[i].rank);
+                } else {
+                    console.log("No latitude/longitude for " + city.name);
+                }
             }
         }).fail(function(jqXHR, msg) {
             alert( "error " + msg);

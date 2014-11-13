@@ -14,4 +14,8 @@ class City < ActiveRecord::Base
     # self.speed_test_results.order('download_kbps DESC').take(max_results)
   end
 
+  def avg_download_kbps
+    self.speed_test_results.average(:download_kbps)
+  end
+
 end
