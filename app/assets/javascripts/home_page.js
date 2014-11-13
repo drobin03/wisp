@@ -42,7 +42,7 @@ $( document ).ready(function() {
             for (var i = 0; i < arrayLength; i++) {
                 var city = data[i];
                 if (city.latitude != null && city.longitude != null){
-                    addMapMarker(data[i].latitude, data[i].longitude, data[i].rank);
+                    addMapMarker(data[i].latitude, data[i].longitude, data[i].name, data[i].rank, (parseFloat(data[i].avg_download_kbps) / 1024).toFixed(2) );
                 } else {
                     console.log("No latitude/longitude for " + city.name);
                 }
@@ -93,15 +93,18 @@ $.ajax({
 
 // Code to populate city longitude/latitudes updateLatLong($.map($('#city_id').find("option") ,function(option) { return $(option).html(); }));
   
-function addMapMarker(latitude, longitude, rank) {
+function addMapMarker(latitude, longitude, city, rank, speed) {
     var loc = {lat: latitude, lng: longitude};
     var marker = new google.maps.Marker({
         position: loc,
         map: map
     });
     
-    var contentString = '<b>Ranked: ' + rank + '</b>';
+    var contentString = '<div class="text-center" style="color:#000000">' + city + '</h1>' + 
+                        '<div class="text-center" style="color:#000000">Rank ' + rank + '</h2>' + 
+                        '<div class="text-center" style="color:#000000">Download ' + speed + ' mbps</h2>';
     var infowindow = new google.maps.InfoWindow({
+          title: "Ranks 111",
           content: contentString
     });
     google.maps.event.addListener(marker, 'click', function() {
