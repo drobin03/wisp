@@ -32,7 +32,11 @@
         <div class="panel-body">
           <div class="row">
             <div class="col-xs-8">
-              <%= link_to conversation.subject, conversation %>
+              <!-- <%= link_to conversation.subject, conversation %> -->
+              <!-- <%= link_to conversation.id , :anchor => conversation.id %> -->
+              <%= link_to conversation.subject , :anchor => conversation.id %>
+              <%= div_for conversation do %>
+              <% end %>
             </div>
             <div class="col-xs-4">
               <p style="text-align: right;">User: <%= conversation.user_name %> &nbsp&nbsp&nbsp&nbsp Submitted: <%= conversation.date %></p>
