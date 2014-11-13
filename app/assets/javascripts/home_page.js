@@ -59,7 +59,6 @@ $( document ).ready(function() {
     getCityFromBrowserGeoLocation(function(city) {
         getLatitudeLongitude( function(latitude, longitude) {
             changeMapPosition(latitude, longitude);
-            addMapMarker(latitude, longitude, 12);
         });
     });
 });
