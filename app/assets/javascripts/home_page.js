@@ -63,7 +63,7 @@ $( document ).ready(function() {
             return ($(this).text() == cityName);
         }).prop('selected', true);
         // TODO: change the province dropdown as well
-        
+        $('#province_id').change();
     });
 });
 
