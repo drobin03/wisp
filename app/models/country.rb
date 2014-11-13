@@ -6,5 +6,7 @@ class Country < ActiveRecord::Base
   
   validates :name, :longitude, :latitude, presence: true
     
-
+  def isp_ranked_list
+    self.isp_companies.uniq
+  end
 end

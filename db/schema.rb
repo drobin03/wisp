@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141106175302) do
+ActiveRecord::Schema.define(version: 20141113133517) do
 
   create_table "cities", force: true do |t|
     t.integer  "province_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20141106175302) do
     t.float    "latitude",    limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "rank"
   end
 
   add_index "cities", ["province_id"], name: "index_cities_on_province_id", using: :btree

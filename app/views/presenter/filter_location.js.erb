@@ -1,1 +1,7 @@
-$('#city_id').html("<%= escape_javascript options_from_collection_for_select(@city_options, 'id', 'name')%>");
+$('#city_id').html("<option></option><%= escape_javascript options_from_collection_for_select(@city_options, 'id', 'name')%>");
+<% if @province_selected %>
+ $('#province_id').val('<%= @province_selected.id %>');
+<% end %>
+<% if @city_selected %>
+  $('#city_id').val('<%= @city_selected.id %>');
+<% end %>
