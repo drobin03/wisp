@@ -19,9 +19,7 @@ class ConversationsController < ApplicationController
     if @conversation.save
       redirect_to conversations_dashboard_path
     else
-      render :action => 'new'
-    end
-  end
+      @Conversations = Conversation.order("created_at DESC")
 
   private
     def conversation_params

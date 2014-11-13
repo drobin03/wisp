@@ -8,8 +8,8 @@ class PresenterController < ApplicationController
   end
   
   def conversations_page
-    @conversation = Conversation.new
-  	@Conversations = Conversation.all
+    @conversation = Conversation.new unless @conversation
+  	@Conversations = Conversation.order("created_at DESC")
   end
 
   def filter_location
