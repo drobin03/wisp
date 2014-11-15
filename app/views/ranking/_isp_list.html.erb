@@ -1,5 +1,16 @@
 <table class="table table-bordered text-center">
-<thead><tr><th class="text-center"><%= @ranking_list_name %></th></tr></thead>
+<thead>
+  <tr>
+    <th colspan="2" class="text-center"><%= @ranking_list_name %></th>
+  </tr>
+  <tr>
+    <th class="text-center">ISP</th>
+    <th class="text-center">Best Price</th>
+  </tr>
+</thead>
 <% @isp_list.each do |isp| %>
-  <tr><td><%= isp.name %></td></tr>
+  <tr>
+    <td><%= isp.isp_company.name %></td>
+    <td><%= number_to_currency isp.cable_price %></td>
+  </tr>
 <% end %>

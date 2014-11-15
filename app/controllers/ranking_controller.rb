@@ -9,7 +9,7 @@ class RankingController < ApplicationController
     # return_val[:isps] = city.isps.to_json
     # return_val[:message] = "your list!"
     # render json: return_val
-    @isp_list = city.isp_ranked_list.map(&:isp_company)
+    @isp_list = city.isp_ranked_list
     @ranking_list_name = "Top ISPs in your City"
   end
   

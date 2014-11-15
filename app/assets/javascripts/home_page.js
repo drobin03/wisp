@@ -111,9 +111,9 @@ function addMapMarker(latitude, longitude, city, rank, speed) {
         map: map
     });
     
-    var contentString = '<div class="text-center" style="color:#000000">' + city + '</h1>' + 
-                        '<div class="text-center" style="color:#000000">Rank ' + rank + '</h2>' + 
-                        '<div class="text-center" style="color:#000000">Download ' + speed + ' mbps</h2>';
+    var contentString = '<div class="text-center" style="color:#000000; font-weight:bold;">' + city + '</div>' + 
+                        '<div class="text-center" style="color:#000000">' + ordinal_suffix_of(rank) + ' in Canada</div>' + 
+                        '<div class="text-center" style="color:#000000">Avg Download Speed ' + speed + ' mbps</div>';
     var infowindow = new google.maps.InfoWindow({
           title: "Ranks 111",
           content: contentString
@@ -230,4 +230,20 @@ function getCityFromBrowserGeoLocation(cityCallback) {
             cityCallback("");
         });  
     });
+}
+
+/* Taken from http://stackoverflow.com/questions/13627308/add-st-nd-rd-and-th-ordinal-suffix-to-a-number */
+function ordinal_suffix_of(i) {
+    var j = i % 10,
+        k = i % 100;
+    if (j == 1 && k != 11) {
+        return i + "st";
+    }
+    if (j == 2 && k != 12) {
+        return i + "nd";
+    }
+    if (j == 3 && k != 13) {
+        return i + "rd";
+    }
+    return i + "th";
 }
