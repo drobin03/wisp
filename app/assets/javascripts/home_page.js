@@ -53,7 +53,7 @@ $( document ).ready(function() {
             for (var i = 0; i < arrayLength; i++) {
                 var city = data[i];
                 if (city.latitude != null && city.longitude != null){
-                    addMapMarker(data[i].latitude, data[i].longitude, data[i].name, data[i].rank, (parseFloat(data[i].avg_download_kbps) / 1024).toFixed(2) );
+                    addMapMarker(data[i].latitude, data[i].longitude, data[i].name, data[i].rank, (parseFloat(data[i].avg_download) / 1024).toFixed(2) );
                 } else {
                     console.log("No latitude/longitude for " + city.name);
                 }

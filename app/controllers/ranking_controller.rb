@@ -22,7 +22,7 @@ class RankingController < ApplicationController
   end
 
   def cities
-    cities = City.all.to_json(only: [:name, :rank, :longitude, :latitude], methods: [:avg_download_kbps])
+    cities = City.select("name, rank, longitude, latitude, AVG(speed_test_results.download_kbps) as avg_download").joins(:speed_test_results).group("cities.id").to_json
     render json: cities
   end
 
