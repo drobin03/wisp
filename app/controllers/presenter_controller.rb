@@ -13,6 +13,9 @@ class PresenterController < ApplicationController
   end
 
   def filter_location
+    @isp_company_options = IspCompany.all
+    @isp_company_selected = IspCompany.find(params[:isp_company_id]) unless params[:isp_company_id].nil? || params[:isp_company_id].empty?
+
     if params[:province_id].empty?
       @city_options = City.all
     else
@@ -26,6 +29,7 @@ class PresenterController < ApplicationController
       if !@city_options.include? @city_selected
         @city_selected = nil
       else
+        @isp_company_options = @city_selected.isp_companies
         @province_selected = @city_selected.province
       end
     end

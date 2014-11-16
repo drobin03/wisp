@@ -1,7 +1,8 @@
 <div class="container">
   <div class="col-md-12" style="padding-bottom:50px">
-
-    <%= render partial: "location_form" %>
+    <%= form_tag filterLocation_path, id: "location_filter_form", class: "form-inline", remote: true do %>
+      <%= render partial: "location_fields", locals: { show_isp_selector: false } %>
+    <% end %>
 
     <h4>Select ISP searching criteria (optional)</h4>
     <div id="recommendation-section">

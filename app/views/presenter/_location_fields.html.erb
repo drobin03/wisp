@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-xs-12">
+    <label>Please enter the location you are interested in: </label>
+    <div class="input-group">
+        <div class="input-group-btn">
+            <%= select_tag :province_id, options_from_collection_for_select(Province.all, "id", "name"), prompt: "Province", include_blank: true, class: "form-control" %>
+            <%= select_tag :city_id, options_from_collection_for_select(City.all, "id", "name"), prompt: "City", include_blank: true, class: "form-control" %>
+            <% if show_isp_selector %>
+              <%= select_tag :isp_company_id, options_from_collection_for_select(IspCompany.all, "id", "name"), prompt: "ISP", include_blank: true, class: "form-control" %>
+            <% end %>
+        </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+$('#province_id, #city_id').change(function(){
+  $.ajax({
+      url: "<%= filterLocation_path %>",
+      type: "post",
+      data: {
+        province_id: $('#province_id').val(),
+        city_id: $('#city_id').val(),
+        isp_company_id: $('#isp_company_id').val()
+      }
+      }).done(function( data ) {
+      }).fail(function(jqXHR, msg) {
+        console.log( "error " + msg);
+    });
+});
+</script>
