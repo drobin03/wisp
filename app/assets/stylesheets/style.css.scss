@@ -37,13 +37,17 @@ body
 
 div.conversation
 {
-	background-color: #EEE; 
+	background-color: #DDD; 
 	color: #333;
 	a
 	{
 		color: $orange;
 		text-decoration: underline;
 	}
+  div.panel-body, div.panel-heading
+  {
+    background-color: #FFF;
+  }
 }
 
 form.conversation 

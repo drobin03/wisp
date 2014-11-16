@@ -1,22 +1,22 @@
 <div class="conversation panel">
-  <%= conversation.breadcrumbs %>
   <div class="row">
-    <div class="col-xs-8">
-      <div class="panel-heading">
-        <div class="panel-title">
-          <a style="cursor: pointer;" data-toggle="collapse" data-target="#conversation_<%= conversation.id %>" aria-expanded="false" aria-controls="conversation_<%= conversation.id %>" >
-            <%= conversation.subject %>
-          </a>
-        </div>
+    <div class="col-xs-6">
+      <%= conversation.breadcrumbs %>
       </div>
-      <%= div_for conversation, :class => "panel-collapse collapse" do %>
-        <div class="panel-body">
-          <%= conversation.body %>
-        </div>
-      <% end %>
+    <div class="col-xs-6">
+      <p style="text-align: right;"5>User: <%= conversation.user_name %> &nbsp&nbsp&nbsp&nbsp Submitted: <%= conversation.date %></p>
     </div>
-    <div class="col-xs-4">
-      <p style="text-align: right;">User: <%= conversation.user_name %> &nbsp&nbsp&nbsp&nbsp Submitted: <%= conversation.date %></p>
+  </div>
+  <div class="panel-heading">
+    <div class="panel-title">          
+      <a style="cursor: pointer;" data-toggle="collapse" data-target="#conversation_<%= conversation.id %>" aria-expanded="false" aria-controls="conversation_<%= conversation.id %>" >
+        <%= conversation.subject %>
+      </a>
+    </div>
+  </div>
+  <div id="conversation_<%= conversation.id %>" class="panel-collapse collapse" role="tabpanel">
+    <div class="panel-body" style="border-top: 1px solid #EEE;">
+      <%= conversation.body %>
     </div>
   </div>
 </div>
