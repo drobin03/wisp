@@ -33,6 +33,9 @@
             <span class='st_pinterest_large' displayText='Pinterest'></span>
             <span class='st_email_large' displayText='Email'></span>
         </p>
+        <p>
+            <%= link_to "Start a Conversation", conversations_path, class: "btn btn-lg btn-success" %>
+        </p>
     <% else %>
         <p>No ISPs found with those criteria in your city. Please try again.</p>
     <% end %>
