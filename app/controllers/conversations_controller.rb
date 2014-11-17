@@ -20,6 +20,7 @@ class ConversationsController < ApplicationController
       redirect_to conversations_path
     else
       @Conversations = Conversation.order("created_at DESC")
+      render :action => 'new'
     end
   end
 
