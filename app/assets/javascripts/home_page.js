@@ -2,122 +2,6 @@
 // used for updating city longitudes/latitudes var timeout = 3000;
 
 $( document ).ready(function() {
-    var ctx = $("#myChart").get(0).getContext("2d");
-    var options = {
-        scaleShowGridLines : true,
-        scaleLabel : "<%= value %>",
-        
-        legendTemplate : '<ul>'
-                  +'<% for (var i=0; i<datasets.length; i++) { %>'
-                    +'<li style="display:inline; padding:5px;">'
-                    +'<span style=\"color:<%=datasets[i].pointColor%>;\">'
-                    +'<% if (datasets[i].label) { %><%= datasets[i].label %><% } %></span>'
-                  +'</li>'
-                +'<% } %>'
-              +'</ul>'
-    };
-    
-    // Move all this color stuff into it's own file, maybe put it with the charting stuff
-    Colors = {};
-    Colors.names = {
-        aqua: "#00ffff",
-        azure: "#f0ffff",
-        beige: "#f5f5dc",
-        black: "#000000",
-        blue: "#0000ff",
-        brown: "#a52a2a",
-        cyan: "#00ffff",
-        darkblue: "#00008b",
-        darkcyan: "#008b8b",
-        darkgrey: "#a9a9a9",
-        darkgreen: "#006400",
-        darkkhaki: "#bdb76b",
-        darkmagenta: "#8b008b",
-        darkolivegreen: "#556b2f",
-        darkorange: "#ff8c00",
-        darkorchid: "#9932cc",
-        darkred: "#8b0000",
-        darksalmon: "#e9967a",
-        darkviolet: "#9400d3",
-        fuchsia: "#ff00ff",
-        gold: "#ffd700",
-        green: "#008000",
-        indigo: "#4b0082",
-        khaki: "#f0e68c",
-        lightblue: "#add8e6",
-        lightcyan: "#e0ffff",
-        lightgreen: "#90ee90",
-        lightgrey: "#d3d3d3",
-        lightpink: "#ffb6c1",
-        lightyellow: "#ffffe0",
-        lime: "#00ff00",
-        magenta: "#ff00ff",
-        maroon: "#800000",
-        navy: "#000080",
-        olive: "#808000",
-        orange: "#ffa500",
-        pink: "#ffc0cb",
-        purple: "#800080",
-        violet: "#800080",
-        red: "#ff0000",
-        silver: "#c0c0c0",
-        white: "#ffffff",
-        yellow: "#ffff00"
-    };
-    Colors.random = function() {
-        var result;
-        var count = 0;
-        for (var prop in this.names)
-            if (Math.random() < 1/++count)
-               result = this.names[prop];
-        return result;
-    };
-    
-    // Return an array in the format [ red, green, blue, alpha ]
-    function hex2rgba(str) {
-        var num = parseInt(str.slice(1), 16); // Convert to a number
-        return [num >> 16 & 255, num >> 8 & 255, num & 255, num >> 24 & 255];
-    }
-    
-    function arr2rgba(arr, alpha) {
-        if(alpha !== undefined) {
-            return "rgba(" + arr[0] + "," + arr[1] + "," + arr[2] + "," + alpha + ")";
-        }
-        return "rgba(" + arr[0] + "," + arr[1] + "," + arr[2] + ",1)";
-    }
-    
-    var color1 = hex2rgba(Colors.random());
-    var color2 = hex2rgba(Colors.random());
-    
-    var data = {
-        labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-        datasets: [
-            {
-                label: "Rogers",
-                fillColor: arr2rgba(color1, 0.2),
-                strokeColor: arr2rgba(color1),
-                pointColor: arr2rgba(color1),
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: arr2rgba(color1),
-                data: [65, 59, 80, 81, 56, 55, 40]
-            },
-            {
-                label: "Bell",
-                fillColor: arr2rgba(color2, 0.2),
-                strokeColor: arr2rgba(color2),
-                pointColor: arr2rgba(color2),
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: arr2rgba(color2),
-                data: [28, 48, 40, 19, 86, 27, 90]
-            }
-        ]
-    };
-    var lineChart = new Chart(ctx).Line(data, options);
-    
-    var legend = lineChart.generateLegend();
-    $('#chart-container').prepend(legend);
     
     // place city ranks on the map
     $.ajax({
@@ -139,8 +23,9 @@ $( document ).ready(function() {
 
     $("#city_id").change(function () {
         var city = $("#city_id option:selected").text();
+        var cityID = $("#city_id option:selected").attr("value");
         //alert("city value changed " + city); 
-        getTopCityISPs(city);
+        getTopCityISPs(city, cityID);
         
         getLocationFromCity(city, function(latitude, longitude) {
             changeMapPosition(latitude, longitude);
@@ -153,22 +38,95 @@ $( document ).ready(function() {
         $('#city_id option').filter(function() { 
             return ($(this).text() == cityName);
         }).prop('selected', true);
+        var cityID = $("#city_id option:selected").attr("value");
         
-        getTopCityISPs(cityName);
+        getTopCityISPs(cityName, cityID);
         $('#province_id').change();
     });
 });
 
-function getTopCityISPs(cityName) {
+function createChart(data) {
+    var options = {
+        scaleShowGridLines : true,
+        scaleLabel : "<%= value %>",
+        
+        legendTemplate : '<ul>'
+                  +'<% for (var i=0; i<datasets.length; i++) { %>'
+                    +'<li style="display:inline; padding:5px;">'
+                    +'<span style=\"color:<%=datasets[i].pointColor%>;\">'
+                    +'<% if (datasets[i].label) { %><%= datasets[i].label %><% } %></span>'
+                  +'</li>'
+                +'<% } %>'
+              +'</ul>'
+    };
+    
+    // dictionary of each isp company
+    var ispDatas = {};
+
+    // group the data into their isp company
+    for(var i=0; i < data.length; i++) {
+        // check to see if we create the object for the ISP company yet, if not create it
+        if(ispDatas[data[i].isp_company_id]){
+            // already exists, add the data point to the ISP company array
+            // convert avg_download to mbps
+            var avgDownMpbs = (parseFloat(data[i].avg_download) / 1024).toFixed(2)
+            var monthIndex = new Date(data[i].date).getMonth();
+            ispDatas[data[i].isp_company_id].data[monthIndex] = avgDownMpbs;
+        }
+        else {
+            // initialize a new data set for the ISP company
+            var color = hex2rgba(Colors.random());
+            ispDatas[data[i].isp_company_id] = {
+                label: data[i].name,
+                fillColor: arr2rgba(color, 0.2),
+                strokeColor: arr2rgba(color),
+                pointColor: arr2rgba(color),
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: arr2rgba(color),
+                data: [0,0,0,0,0,0,0,0,0,0,0,0]
+            };
+        }
+    }
+    // convert dictionary into array for Chart.js
+    var datasets = $.map(ispDatas, function(value, index) {
+        return [value];
+    });
+    
+    var data = {
+        labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+        datasets: datasets
+    };
+    // create the chart
+    var ctx = $("#myChart").get(0).getContext("2d");
+    var lineChart = new Chart(ctx).Line(data, options);
+    
+    // create the legend
+    var legend = lineChart.generateLegend();
+    $('#chart-container').html(legend);
+}
+
+function getTopCityISPs(cityName, cityID) {
     // get ISP data: defaults to guelph
     $.ajax({
         url: "rankings/city/list",
-        data: cityName,
+        data: { city : cityName},
         }).done(function( data ) {
             console.log( "city/list data: " + data );
         }).fail(function(jqXHR, msg) {
             alert( "error " + msg);
       });
+    
+    if(cityID !== undefined) {
+        // get data for the chart
+        $.ajax({
+            url: "city/" + cityID + "/isps",
+            }).done(function( data ) {
+                createChart(data);
+            }).fail(function(jqXHR, msg) {
+                alert( "error " + msg);
+        });
+    }
 }
 
 getTopCityISPs();
