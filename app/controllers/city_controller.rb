@@ -17,7 +17,8 @@ class CityController < ApplicationController
   def isp_list
     city = City.find(params[:id])
     oldestDate = Time.now - 1.year
-    isps = city.speed_test_results.select("isp_company_id, date, AVG(download_kbps) as avg_download").
+    isps = city.speed_test_results.select("isp_company_id, isp_companies.name, date, AVG(download_kbps) as avg_download").
+      joins(:isp_company).
       where("date > \"#{oldestDate}\"").
       group("isp_company_id, YEAR(date), MONTH(date)").to_json
     render json: isps
