@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   post '/filterLocation' => 'presenter#filter_location'
 
+  get 'city/:id/isps' => 'city#isp_list'
+
   resources :conversations
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
