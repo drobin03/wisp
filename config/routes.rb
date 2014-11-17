@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'rankings/country/list' => 'ranking#country_ranked_isp_list'
   get 'rankings/cities' => 'ranking#cities'
   
-  get 'conversations/update' => 'conversations#update'
+  post 'conversations/update' => 'conversations#update'
 
   post 'recommendation/recommend' => 'recommendations#recommend'
 

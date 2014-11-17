@@ -23,20 +23,21 @@ class ConversationsController < ApplicationController
     end
   end
 
-private
   def update
     @AllConversations = Conversation.order("created_at DESC")
-    @Conversation = Conversation.new
+    @Conversations = Array.new
     @AllConversations.each do |conversation|
-      if params[:province_id].empty or params[:province_id] == @conversation.province_id?
-        if params[:city_id].empty or params[:city_id] == @conversation.city_id?
-          if params[:isp_company_id].empty or params[:isp_company_id] == @conversation.isp_company_id?
-            @Conversations.add(@conversation)
+      if params[:province_id].empty? or params[:province_id].to_i == conversation.province_id
+        if params[:city_id].empty? or params[:city_id].to_i == conversation.city_id
+          if params[:isp_company_id].empty? or params[:isp_company_id].to_i == conversation.isp_company_id
+            @Conversations.push(conversation)
           end
         end
       end
     end
   end
+
+private
 
   def conversation_params
     params.require(:conversation).permit(

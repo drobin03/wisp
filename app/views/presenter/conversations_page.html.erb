@@ -20,9 +20,7 @@
     All Conversations
   </p>
   <div id="conversation-list" class="col-md-12" style="padding: 30px">
-    <% @Conversations.each do |conversation| %>
-      <%= render partial: "conversation", locals: { conversation: conversation } %>
-    <% end %>
+    <%= render partial: "conversations" %>
   </div>
 </div>
 

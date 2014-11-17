@@ -1,0 +1,4 @@
+<%- 
+list = render partial: '/presenter/conversations'
+ -%>
+$('#conversation-list').html("<%= escape_javascript(list) %>");

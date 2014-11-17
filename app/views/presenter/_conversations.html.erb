@@ -1,0 +1,3 @@
+<% @Conversations.each do |conversation| %>
+  <%= render partial: "presenter/conversation", locals: { conversation: conversation } %>
+<% end %>
