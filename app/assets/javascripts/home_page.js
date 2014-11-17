@@ -5,7 +5,9 @@ $( document ).ready(function() {
     var ctx = $("#myChart").get(0).getContext("2d");
     var options = {
         scaleShowGridLines : true,
-  legendTemplate : '<ul>'
+        scaleLabel : "<%= value %>",
+        
+        legendTemplate : '<ul>'
                   +'<% for (var i=0; i<datasets.length; i++) { %>'
                     +'<li style="display:inline; padding:5px;">'
                     +'<span style=\"color:<%=datasets[i].pointColor%>;\">'
@@ -15,27 +17,99 @@ $( document ).ready(function() {
               +'</ul>'
     };
     
+    // Move all this color stuff into it's own file, maybe put it with the charting stuff
+    Colors = {};
+    Colors.names = {
+        aqua: "#00ffff",
+        azure: "#f0ffff",
+        beige: "#f5f5dc",
+        black: "#000000",
+        blue: "#0000ff",
+        brown: "#a52a2a",
+        cyan: "#00ffff",
+        darkblue: "#00008b",
+        darkcyan: "#008b8b",
+        darkgrey: "#a9a9a9",
+        darkgreen: "#006400",
+        darkkhaki: "#bdb76b",
+        darkmagenta: "#8b008b",
+        darkolivegreen: "#556b2f",
+        darkorange: "#ff8c00",
+        darkorchid: "#9932cc",
+        darkred: "#8b0000",
+        darksalmon: "#e9967a",
+        darkviolet: "#9400d3",
+        fuchsia: "#ff00ff",
+        gold: "#ffd700",
+        green: "#008000",
+        indigo: "#4b0082",
+        khaki: "#f0e68c",
+        lightblue: "#add8e6",
+        lightcyan: "#e0ffff",
+        lightgreen: "#90ee90",
+        lightgrey: "#d3d3d3",
+        lightpink: "#ffb6c1",
+        lightyellow: "#ffffe0",
+        lime: "#00ff00",
+        magenta: "#ff00ff",
+        maroon: "#800000",
+        navy: "#000080",
+        olive: "#808000",
+        orange: "#ffa500",
+        pink: "#ffc0cb",
+        purple: "#800080",
+        violet: "#800080",
+        red: "#ff0000",
+        silver: "#c0c0c0",
+        white: "#ffffff",
+        yellow: "#ffff00"
+    };
+    Colors.random = function() {
+        var result;
+        var count = 0;
+        for (var prop in this.names)
+            if (Math.random() < 1/++count)
+               result = this.names[prop];
+        return result;
+    };
+    
+    // Return an array in the format [ red, green, blue, alpha ]
+    function hex2rgba(str) {
+        var num = parseInt(str.slice(1), 16); // Convert to a number
+        return [num >> 16 & 255, num >> 8 & 255, num & 255, num >> 24 & 255];
+    }
+    
+    function arr2rgba(arr, alpha) {
+        if(alpha !== undefined) {
+            return "rgba(" + arr[0] + "," + arr[1] + "," + arr[2] + "," + alpha + ")";
+        }
+        return "rgba(" + arr[0] + "," + arr[1] + "," + arr[2] + ",1)";
+    }
+    
+    var color1 = hex2rgba(Colors.random());
+    var color2 = hex2rgba(Colors.random());
+    
     var data = {
         labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
         datasets: [
             {
                 label: "Rogers",
-                fillColor: "rgba(220,0,0,0.2)",
-                strokeColor: "rgba(220,0,0,1)",
-                pointColor: "rgba(220,0,0,1)",
+                fillColor: arr2rgba(color1, 0.2),
+                strokeColor: arr2rgba(color1),
+                pointColor: arr2rgba(color1),
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(220,0,0,1)",
+                pointHighlightStroke: arr2rgba(color1),
                 data: [65, 59, 80, 81, 56, 55, 40]
             },
             {
                 label: "Bell",
-                fillColor: "rgba(151,187,205,0.2)",
-                strokeColor: "rgba(151,187,205,1)",
-                pointColor: "rgba(151,187,205,1)",
+                fillColor: arr2rgba(color2, 0.2),
+                strokeColor: arr2rgba(color2),
+                pointColor: arr2rgba(color2),
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(151,187,205,1)",
+                pointHighlightStroke: arr2rgba(color2),
                 data: [28, 48, 40, 19, 86, 27, 90]
             }
         ]
