@@ -140,6 +140,7 @@ $( document ).ready(function() {
     $("#city_id").change(function () {
         var city = $("#city_id option:selected").text();
         //alert("city value changed " + city); 
+        getTopCityISPs(city);
         
         getLocationFromCity(city, function(latitude, longitude) {
             changeMapPosition(latitude, longitude);
@@ -152,20 +153,25 @@ $( document ).ready(function() {
         $('#city_id option').filter(function() { 
             return ($(this).text() == cityName);
         }).prop('selected', true);
-        // TODO: change the province dropdown as well
+        
+        getTopCityISPs(cityName);
         $('#province_id').change();
     });
 });
 
-// get ISP data: defaults to guelph
-$.ajax({
-    url: "rankings/city/list",
-    }).done(function( data ) {
-        console.log( "city/list data: " + data );
-    }).fail(function(jqXHR, msg) {
-        alert( "error " + msg);
-  });
-  
+function getTopCityISPs(cityName) {
+    // get ISP data: defaults to guelph
+    $.ajax({
+        url: "rankings/city/list",
+        data: cityName,
+        }).done(function( data ) {
+            console.log( "city/list data: " + data );
+        }).fail(function(jqXHR, msg) {
+            alert( "error " + msg);
+      });
+}
+
+getTopCityISPs();
 
 // defaults to Canada
 $.ajax({
