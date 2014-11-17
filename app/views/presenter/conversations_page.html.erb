@@ -39,18 +39,34 @@
       console.log( "error " + msg);
     });
 
-    var e1 = document.getElementById("province_id");
-    var strUser1 = e1.options[e1.selectedIndex].text;
-    var e2 = document.getElementById('city_id');
-    var strUser2 = e2.options[e2.selectedIndex].text;
-    var e3 = document.getElementById('isp_company_id');
-    var strUser3 = e3.options[e3.selectedIndex].text;
-    document.getElementById('breadcrumbs').innerHTML = strUser1 + "/" + strUser2 + "/" + strUser3;
+    var s1 = document.getElementById("province_id");
+    var province = s1.options[s1.selectedIndex].text;
+    var s2 = document.getElementById('city_id');
+    var city = s2.options[s2.selectedIndex].text;
+    var s3 = document.getElementById('isp_company_id');
+    var isp = s3.options[s3.selectedIndex].text;
+
+    var breadcrumb;
+    if( province != "Province" && province != "" )
+    {
+      breadcrumb = province;
+      if( city != "City" && city != "" )
+      {
+        breadcrumb = breadcrumb + "/" + city;
+      }
+      if( isp != "ISP" && isp != "" )
+      {
+        breadcrumb = breadcrumb + "/" + isp;
+      }
+    }
+    else if( isp != "ISP" && isp != "" )
+    {
+      breadcrumb = isp;
+    }
+    else
+    {
+      breadcrumb = "All Conversations"
+    }
+    document.getElementById('breadcrumbs').innerHTML = breadcrumb;
   });
 </script>
-
-    <!-- var posts = "";
-    <% @Conversations.each do |conversation| %>
-      posts = posts + "<%= render partial: "conversation", locals: { conversation: conversation } %>"
-    <% end %>
-    document.getElementById('conversation-list').innerHTML = posts; -->
