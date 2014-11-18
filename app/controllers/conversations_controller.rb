@@ -16,12 +16,8 @@ class ConversationsController < ApplicationController
 
   def create
     @conversation = Conversation.new(conversation_params)
-    if @conversation.save
-      redirect_to conversations_path
-    else
-      @Conversations = Conversation.order("created_at DESC")
-      render :action => 'new'
-    end
+    @Conversations = Conversation.order("created_at DESC")
+    @conversation.save
   end
 
   def update

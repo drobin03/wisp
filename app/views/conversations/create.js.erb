@@ -1,0 +1,7 @@
+<%- 
+  form = render partial: "conversations/form"
+  conversations = render partial: "presenter/conversations"
+ -%>
+
+$('#new-conversation').html("<%= escape_javascript form %>");
+$('#conversation-list').html("<%= escape_javascript conversations %>");
