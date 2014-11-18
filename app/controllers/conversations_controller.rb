@@ -17,7 +17,11 @@ class ConversationsController < ApplicationController
   def create
     @conversation = Conversation.new(conversation_params)
     @Conversations = Conversation.order("created_at DESC")
-    @conversation.save
+    if @conversation.save
+      flash[:success] = "Thank you for joining the conversation!"
+    else
+      flash[:error] = "There was an error with your submission, please try again."
+    end
   end
 
   def update

@@ -1,0 +1,15 @@
+<%- unless flash[:success].blank? -%>
+  <div class="notice alert alert-success">
+    <span><%= raw flash[:success] %></span>
+  </div>
+<%- end -%>
+<%- unless flash[:error].blank? -%>
+  <div class="error alert alert-danger">
+    <span><%= raw flash[:error] %></span>
+  </div>
+<%- end -%>
+<%- unless flash[:notice].blank? -%>
+  <div class="alert alert-warning">
+    <span><%= raw flash[:notice] %></span>
+  </div>
+<%- end -%>

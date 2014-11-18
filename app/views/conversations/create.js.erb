@@ -1,7 +1,9 @@
 <%- 
   form = render partial: "conversations/form"
   conversations = render partial: "presenter/conversations"
+  flashes = render partial: "layouts/shared/flashes"
  -%>
 
 $('#new-conversation').html("<%= escape_javascript form %>");
 $('#conversation-list').html("<%= escape_javascript conversations %>");
+$('#flashes').html("<%= escape_javascript flashes %>");
