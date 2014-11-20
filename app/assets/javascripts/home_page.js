@@ -2,6 +2,17 @@
 // used for updating city longitudes/latitudes var timeout = 3000;
 
 $( document ).ready(function() {
+
+    getTopCityISPs();
+
+    // defaults to Canada
+    $.ajax({
+        url: "rankings/country/list",
+        }).done(function( data ) {
+            console.log( "country/list data: " + data );
+        }).fail(function(jqXHR, msg) {
+            alert( "error " + msg);
+      });
     
     // place city ranks on the map
     $.ajax({
@@ -129,16 +140,7 @@ function getTopCityISPs(cityName, cityID) {
     }
 }
 
-getTopCityISPs();
 
-// defaults to Canada
-$.ajax({
-    url: "rankings/country/list",
-    }).done(function( data ) {
-        console.log( "country/list data: " + data );
-    }).fail(function(jqXHR, msg) {
-        alert( "error " + msg);
-  });
 
 // Code to populate city longitude/latitudes updateLatLong($.map($('#city_id').find("option") ,function(option) { return $(option).html(); }));
   
