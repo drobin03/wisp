@@ -5,6 +5,7 @@ $('#isp_company_id').html("<option></option><%= escape_javascript options_from_c
 <% end %>
 <% if @city_selected %>
   $('#city_id').val('<%= @city_selected.id %>');
+  $('#recommendation_city_id').val('<%= @city_selected.id %>');
 <% end %>
 <% if @isp_selected %>
   $('#isp_company_id').val('<%= @isp_company_selected.id %>');
